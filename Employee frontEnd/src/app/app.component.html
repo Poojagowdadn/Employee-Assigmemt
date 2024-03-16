@@ -1,0 +1,172 @@
+<div class="grid">
+  <p-toast key="Employee"></p-toast>
+  <div class="col-12 md:col-5">
+      <div class="card">
+          <p-table
+              #dt
+              [value]="EmployeeDataRecord"
+              [columns]="vcEmpCategory"
+              responsiveLayout="scroll"
+              [rows]="10"
+              [paginator]="true"
+              [rowsPerPageOptions]="[5,10, 15]"
+              [showCurrentPageReport]="true"
+              currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+              selectionMode="single"
+              (onRowSelect)="onRowSelect()"
+              [selectionMode]="'single'"
+              dataKey="ID"
+              [(selection)]="selectedRecord"
+              [rowHover]="true"
+          >
+              <ng-template pTemplate="caption">
+                  <div
+                      class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
+                  >
+                      <h5 class="m-0">Employee Records</h5>                    
+                  </div>
+              </ng-template>
+              <ng-template pTemplate="header">
+                  <tr>
+                      <th id="firstName" pSortableColumn="firstName">
+                          First Name<p-sortIcon field="firstName"></p-sortIcon>
+                      </th>
+                      <th id="lastName" pSortableColumn="lastName">
+                          Last Name<p-sortIcon
+                              field="lastName"
+                          ></p-sortIcon>
+                      </th>
+                      <th id="Email" pSortableColumn="Email">
+                        Email<p-sortIcon field="Email"></p-sortIcon>
+                    </th>
+                    <th id="MobileNumber" pSortableColumn="MobileNumber">
+                      Mobile Number<p-sortIcon
+                            field="MobileNumber"
+                        ></p-sortIcon>
+                    </th>
+                    <th id="City" pSortableColumn="City">
+                      City <p-sortIcon
+                          field="City"
+                      ></p-sortIcon>
+                  </th>
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-dtEmpCategory>
+                  <tr [pSelectableRow]="dtEmpCategory">
+                      <td>
+                          <span class="p-column-title"></span
+                          >{{ dtEmpCategory.firstName }}
+                      </td>
+                      <td>
+                          <span class="p-column-title"></span
+                          >{{ dtEmpCategory.lastName }}
+                      </td>
+                      <td>
+                        <span class="p-column-title"></span
+                        >{{ dtEmpCategory.Email }}
+                    </td>
+                    <td>
+                        <span class="p-column-title"></span
+                        >{{ dtEmpCategory.MobileNumber }}
+                    </td>
+                    <td>
+                      <span class="p-column-title"></span
+                      >{{ dtEmpCategory.city  }}
+                  </td>
+                  </tr>
+              </ng-template>
+          </p-table>
+      </div>
+  </div>
+  <div class="col-12 md:col-7">
+      <div class="card">
+          <h4>Employee Master</h4>
+          <p-toolbar class="p-4">
+              <div class="p-toolbar-group-left flex flex-wrap">
+                  <button
+                      pButton
+                      label="New"
+                      icon="pi pi-plus"
+                      class="mr-2"
+                      (click)="clearEmployee()"
+                  ></button>
+                  <button
+                      pButton
+                      type="button"
+                      pTooltip="Save"
+                      tooltipPosition="top"
+                      icon="pi pi-check"
+                      class="p-button-success mr-2"
+                      (click)="saveEmployee()"
+                  ></button>
+                  <p-button
+                      pTooltip="Delete"
+                      tooltipPosition="top"
+                      icon="pi pi-trash"
+                      styleClass="p-button-warning"
+                      class="mr-2"
+                      (click)="deleteEmployee()"
+                  ></p-button>
+              </div>
+          </p-toolbar>
+              <div class="grid p-fluid mt-5">
+                  <div class="col-12 lg:col-6">
+                      <span class="p-float-label">
+                          <input
+                              type="text"
+                              pInputText
+                              class="p-1rem mb-1"
+                              [(ngModel)]="record.firstName"
+                          />
+                          <label for="Code">First Name </label>
+                      </span>                    
+                  </div>
+                  <div class="col-12 lg:col-6">
+                      <span class="p-float-label">
+                          <input
+                              type="text"
+                              pInputText
+                              class="p-1rem mb-1"
+                              [(ngModel)]="record.lastName"
+                          />
+                          <label>Last Name</label>
+                      </span>
+                  </div>
+                  <div class="col-12 lg:col-6">
+                    <span class="p-float-label">
+                        <input
+                            type="text"
+                            pInputText
+                            class="p-1rem mb-1"
+                            [(ngModel)]="record.Email"
+                        />
+                        <label>Email</label>
+                    </span>                  
+                </div>
+                <div class="col-12 lg:col-6">
+                    <span class="p-float-label">
+                        <input
+                            type="text"
+                            pInputText
+                            class="p-1rem mb-1"  
+                            [(ngModel)]="record.MobileNumber"                         
+                        />
+                        <label>Mobile Number</label>
+                    </span>                   
+                </div>
+                <div class="col-12 lg:col-6">
+                  <span class="p-float-label">
+                      <input
+                          type="text"
+                          pInputText
+                          class="p-1rem mb-1"  
+                          [(ngModel)]="record.city"                         
+                      />
+                      <label >City</label>
+                  </span>                   
+              </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
